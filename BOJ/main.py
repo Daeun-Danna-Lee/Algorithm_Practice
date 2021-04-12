@@ -1,6 +1,5 @@
 import sys
 
-
 input = sys.stdin.readline
 
 m, n = map(int, input().split())
@@ -11,5 +10,5 @@ for i in range(m, n+1):
         if i % j == 0:
             cnt += 1
             break
-    if cnt == 0:
+    if cnt == 0 and i != 1:
         print(i)
