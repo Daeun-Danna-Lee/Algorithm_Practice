@@ -1,18 +1,19 @@
 import sys
+from itertools import combinations
 
 input = sys.stdin.readline
 
-dwarf = []
+vowels = ['a', 'e', 'i', 'o', 'u']
 
-for i in range(9):
-    dwarf.append(int(input()))
+l, c = map(int, input().split())
+words = sorted(input().split())
 
-dwarf.sort()
+print(words)
 
-for i in range(8):
-    for j in range(i+1, 9):
-        if sum(dwarf) - dwarf[i] - dwarf[j] == 100:
-            for k in range(9):
-                if k != i and k != j:
-                    print(dwarf[k])
-            quit()
+for pw in combinations(words, l):
+    char_cnt = 0
+    for char in pw:
+        if char in vowels:
+            char_cnt += 1
+    if char_cnt >= 1 and len(words) - 2:
+        print(''.join(pw)) # 조합된 걸 문자열로 변환
