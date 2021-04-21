@@ -8,8 +8,6 @@ vowels = ['a', 'e', 'i', 'o', 'u']
 l, c = map(int, input().split())
 words = sorted(input().split())
 
-print(words)
-
 for pw in combinations(words, l):
     char_cnt = 0
     for char in pw:
