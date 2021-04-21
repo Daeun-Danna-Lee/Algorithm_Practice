@@ -2,13 +2,17 @@ import sys
 
 input = sys.stdin.readline
 
-m, n = map(int, input().split())
+dwarf = []
 
-for i in range(m, n+1):
-    cnt = 0
-    for j in range(2, int(i**0.5)+1):
-        if i % j == 0:
-            cnt += 1
-            break
-    if cnt == 0 and i != 1:
-        print(i)
+for i in range(9):
+    dwarf.append(int(input()))
+
+dwarf.sort()
+
+for i in range(8):
+    for j in range(i+1, 9):
+        if sum(dwarf) - dwarf[i] - dwarf[j] == 100:
+            for k in range(9):
+                if k != i and k != j:
+                    print(dwarf[k])
+            quit()
