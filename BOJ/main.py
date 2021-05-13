@@ -1,18 +1,31 @@
 import sys
-from itertools import combinations
 
 input = sys.stdin.readline
 
-vowels = ['a', 'e', 'i', 'o', 'u']
+# 입력부
+n, m = map(int, input().split())
+trees = list(map(int, input().split()))
 
-l, c = map(int, input().split())
-words = sorted(input().split())
+# 이분탐색으로 접근하려고 하니
+# 시작점과 끝점 설정
+left = 0
+right = max(trees)
 
-answer = []
-for pw in combinations(words, l):
-    vowel_cnt = 0
-    for char in pw:
-        if char in vowels:
-            vowel_cnt += 1
-    if vowel_cnt >= 1 and vowel_cnt <= l - 2:
-        print(''.join(pw))
+# 원하는 목표 지점 찾을때까지 반복
+while left <= right:
+    tree_heights = 0  # 절단된 나무 길이 총합
+    mid = (left + right) // 2  # 중간점 설정
+
+    # 뭔가 이 반복문 부분 때문에 시간 초과 느낌..
+    # 절단된 나무 길이 합 계산하기
+    for tree in trees:
+        if tree > mid:
+            tree_heights += tree - mid
+
+        # 범위조정
+    if tree_heights >= m:
+        left = mid + 1
+    else:
+        right = mid - 1
+
+print(right)
