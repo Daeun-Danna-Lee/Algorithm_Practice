@@ -3,17 +3,18 @@ import sys
 input = sys.stdin.readline
 
 givenString = input().rstrip()
-bomb = input().rstrip()
+bomb = list(input().rstrip())
 
-while True:
-    newString =  givenString.replace(bomb, '')
+stack = []
 
-    if len(newString) == 0:
-        print("FRULA")
-        break
-    
-    if givenString == newString:
-        print(givenString)
-        break
-    else:
-        givenString = newString
+for char in givenString:
+    stack.append(char)
+
+    if char == bomb[-1]:
+        if stack[-len(bomb):] == bomb:
+            del stack[-len(bomb):]
+
+if stack:
+    print(*stack, sep='')
+else:
+    print("FRULA")
