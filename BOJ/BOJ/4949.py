@@ -4,9 +4,9 @@ input = sys.stdin.readline
 dict = {')': '(', ']': '['}
 
 while True:
-    string = list(input().rstrip())
+    string = input().rstrip()
 
-    if string == ['.']:
+    if string == '.':
         break
 
     stack = []
@@ -17,15 +17,18 @@ while True:
         elif char == ')' or char == ']':
             if len(stack) == 0:
                 isCorrect = False
-                print("NO")
+                print("no")
                 break
             else:
                 if stack[-1] == dict[char]:
                     stack.pop()
                 else:
                     isCorrect = False
-                    print("NO")
+                    print("no")
                     break
 
     if isCorrect:
-        print("YES")
+        if len(stack) == 0:
+            print("yes")
+        else:
+            print("no")
