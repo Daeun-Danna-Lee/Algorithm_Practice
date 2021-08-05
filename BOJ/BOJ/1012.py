@@ -9,7 +9,8 @@ def bfs(x, y):
     dx = [1, -1, 0, 0]
     dy = [0, 0, 1, -1]
 
-    queue = deque((x, y))
+    queue = deque()
+    queue.append((x, y))
 
     while queue:
         x, y = queue.popleft()
